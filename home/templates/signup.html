@@ -1,0 +1,147 @@
+{% load static %}
+<html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head>
+    <title>Signup</title>
+</head>
+<style media="screen">
+    form{
+    margin-top:100px;
+    height:500px;
+    box-shadow:0px 0px 30px red;
+    padding:20px;
+    }
+    body{
+    content:'';
+    position:fixed;
+    width:100%;
+    height:100%;
+    background: url({% static 'image/bg2.jpg' %}) center;
+    background-position:center center;
+    background-repeat:no repeat;
+    background-attachment:fixed;
+    background-size:cover;
+    }
+
+body .password-field {
+position: relative;
+}
+body .password-field #toggler {
+position: absolute;
+right: 20px;
+top: 50%;
+transform: translateY(-50%);
+cursor: pointer;
+}
+body .password-field #toggler {
+    position: absolute;
+    right: 20px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+body .password-field1 {
+position: relative;
+}
+body .password-field1 #toggler1 {
+position: absolute;
+right: 20px;
+top: 50%;
+transform: translateY(-50%);
+cursor: pointer;
+}
+body .password-field1 #toggler1 {
+    position: absolute;
+    right: 20px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+</style>
+{% include 'cdnlines.html' %}
+<body>
+<div class="container">
+    <div class="row">
+<div class="offset-md-4 col-md-4">
+<form method="POST">
+    {% csrf_token %}
+    <h3 class="text-center text-white ">Signup Here!!</h3>
+    <label class="text-white">Username</label>
+    <input type="text" name="username" placeholder="Enter Username" class="form-control" required>
+    <label class="text-white">Email ID</label>
+    <input type="email" name="email" placeholder="Enter Email ID" class="form-control" required>
+    <div class="password-field">
+            <label class="text-white">Password</label>
+            <input type="password" id="psw" name="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                   class="form-control" placeholder="Enter Password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more character" required>
+        <span><i id="toggler" class="far fa-eye"></i></span>
+     </div>
+        <div class="password-field1">
+    <label class="text-white">Confirm Password</label>
+    <input type="password" name="password2" id="psw1" placeholder="Confirm Password" class="form-control" required>
+            <span><i id="toggler1" class="far fa-eye"></i></span>
+        </div>
+
+    <script type="text/javascript">
+    var password = document.getElementById('psw');
+var toggler = document.getElementById('toggler');
+showHidePassword = () => {
+if (password.type == 'password') {
+password.setAttribute('type', 'text');
+toggler.classList.remove('fa-eye-slash');
+} else {
+toggler.classList.add('fa-eye-slash');
+password.setAttribute('type', 'password');
+}
+};
+toggler.addEventListener('click', showHidePassword);
+
+    var password1 = document.getElementById('psw1');
+var toggler1 = document.getElementById('toggler1');
+showHidePassword = () => {
+if (password1.type == 'password') {
+password1.setAttribute('type', 'text');
+toggler1.classList.remove('fa-eye-slash');
+} else {
+toggler1.classList.add('fa-eye-slash');
+password1.setAttribute('type', 'password');
+}
+};
+toggler1.addEventListener('click', showHidePassword);
+</script>
+
+    {% if messages %}
+    {% for message in messages %}
+        {% if 'sign3' in message.tags %}
+            <p class="md text-center font-poller text-white registration_error_message">{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+    {% if messages %}
+    {% for message in messages %}
+        {% if 'sign4' in message.tags %}
+            <p class="md text-center font-poller text-white registration_error_message">{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+    {% if messages %}
+    {% for message in messages %}
+        {% if 'sign2' in message.tags %}
+            <p class="md mt-2 font-poller text-center text-white registration_error_message">{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+    <center>
+    <input type="submit" value="Signup" class="btn btn-primary mt-4 mb-2"><br>
+    <a href="{% url 'Login' %}" class="text-center ">Already have an account</a>
+    </center>
+</form>
+</div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
